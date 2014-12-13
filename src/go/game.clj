@@ -11,7 +11,6 @@
 
 (s/defn valid? :- schema/game
   [game :- schema/game]
-  (let [moves (m/moves game)]
-    (when (rules/alternating-colors? moves)
-      ;;TODO: super-ko rule
-      game)))
+  (when (rules/alternating-colors? game)
+    ;;TODO: super-ko rule
+    game))

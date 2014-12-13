@@ -6,8 +6,8 @@
 
 (defn- overlapping-stone?
   [stones stone]
-  (let [stones-vertices (into #{} (map m/stone-vertex stones))
-        stone-vertex (m/stone-vertex stone)]
+  (let [stones-vertices (into #{} (map m/move stones))
+        stone-vertex (m/move stone)]
     (contains? stones-vertices stone-vertex)))
 
 (defn- place-stone
@@ -22,6 +22,6 @@
 
 (defn alternating-colors?
   [moves]
-  (let [actual-colors (map m/move-color moves)
+  (let [actual-colors (map m/color moves)
         expected-colors (take (count actual-colors) (cycle [:black :white]))]
     (= actual-colors expected-colors)))
