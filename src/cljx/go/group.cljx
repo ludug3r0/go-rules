@@ -61,5 +61,5 @@
         dead-groups (set/difference intermediary-groups alive-groups)
         throw-in-group (set/select #(contains? % stone) dead-groups)]
     (if (< 1 (count dead-groups))
-      (set/union alive-groups throw-in-group )
+      (set/union alive-groups throw-in-group)
       alive-groups)))

@@ -1,6 +1,6 @@
 (ns go.game
   (:require [go.models :as m]
-            [schema.core :as s]
+            [schema.core :as s :include-macros true]
             [go.schema :as schema]
             [go.rules :as rules]))
 
