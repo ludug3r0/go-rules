@@ -20,6 +20,13 @@
   [stones]
   (reduce place-stone #{} stones))
 
+(defn stones-dont-overlap?
+  [stones]
+  (try
+    (surviving-stones stones)
+    (catch #+clj Exception #+cljs js/Error e
+                                           nil)))
+
 (defn alternating-colors?
   [moves]
   (let [actual-colors (map m/color moves)

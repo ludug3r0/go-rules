@@ -35,7 +35,8 @@
   (is (= #{[:black [16 16]]} (rules/surviving-stones [[:black [16 16]]]))))
 
 (deftest cannot-place-a-stone-where-another-is-already-placed
-  (is (thrown? #+clj Exception #+cljs js/Error (rules/surviving-stones [[:black [16 16]] [:white [16 16]]]))))
+  (is (thrown? #+clj Exception #+cljs js/Error (rules/surviving-stones [[:black [16 16]] [:white [16 16]]])))
+  (is (= nil (rules/stones-dont-overlap? [[:black [16 16]] [:white [16 16]]]))))
 
 (deftest two-stones-survive-in-the-board
   (is (= #{[:black [16 16]]

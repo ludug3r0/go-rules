@@ -9,7 +9,6 @@
 (deftest a-game-can-have-no-moves
   (is (game/valid? [])))
 
-
 (deftest first-stone-played-should-be-black
   (is (game/valid? [[:black [16 16]]])))
 
@@ -26,12 +25,28 @@
                     [:black [16 4]]
                     [:white [4 16]]])))
 
+(deftest no-stone-can-be-put-where-other-already-is
+  (is (invalid? [[:black [16 16]]
+                 [:white [16 16]]])))
+
+(deftest two-players-can-both-pass-in-a-row
+  (is (game/valid? [[:black [16 16]]
+                    [:white [4 4]]
+                    [:black :pass]
+                    [:white :pass]])))
+
 
 (deftest an-empty-game-has-an-empty-configuration
   (is (= #{} (game/configuration []))))
 
 (deftest can-generate-a-configuration-for-the-placemente-of-a-single-stone
   (is (= #{[:black [16 16]]} (game/configuration [[:black [16 16]]]))))
+
+(deftest an-empty-board-has-361-possible-placements
+  (is (= 361 (count (game/possible-placements [])))))
+
+(deftest after-the-first-move-board-has-360-possible-placements
+  (is (= 360 (count (game/possible-placements [[:black [16 16]]])))))
 
 
 

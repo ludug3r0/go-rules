@@ -11,6 +11,19 @@
 
 (s/defn valid? :- schema/game
   [game :- schema/game]
-  (when (rules/alternating-colors? game)
+  (when (and
+          (rules/alternating-colors? game)
+          (rules/stones-dont-overlap? (m/stones game)))
     ;;TODO: super-ko rule
     game))
+
+(s/defn possible-placements :- [schema/placement]
+  [game :- schema/game]
+  (filter (fn [placement]
+            (let [possible-game (conj game placement)]
+              (and (valid? possible-game)
+                   (configuration possible-game))))
+          (for [color [:black :white]
+                line (range 1 20)
+                column (range 1 20)]
+            [color [line column]])))
