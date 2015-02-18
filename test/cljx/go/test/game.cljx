@@ -42,11 +42,28 @@
 (deftest can-generate-a-configuration-for-the-placemente-of-a-single-stone
   (is (= #{[:black [16 16]]} (game/configuration [[:black [16 16]]]))))
 
-(deftest an-empty-board-has-361-possible-placements
-  (is (= 361 (count (game/possible-placements [])))))
+(deftest an-empty-board-has-361-valid-placements
+  (is (= 361 (count (game/valid-placements [])))))
 
-(deftest after-the-first-move-board-has-360-possible-placements
-  (is (= 360 (count (game/possible-placements [[:black [16 16]]])))))
+(deftest after-the-first-move-board-has-360-valid-placements
+  (is (= 360 (count (game/valid-placements [[:black [16 16]]])))))
+
+(deftest an-empty-board-has-361-empty-placements
+  (is (= 361 (count (game/empty-placements [])))))
+
+(deftest after-the-first-move-board-has-360-empty-placements
+  (is (= 360 (count (game/empty-placements [[:black [16 16]]])))))
+
+(deftest first-player-is-black
+  (is (= :black (game/current-player-color []))))
+
+(deftest after-black-move-its-whites-turn
+  (is (= :white (game/current-player-color [[:black [16 16]]]))))
+
+(deftest after-white-move-its-blacks-turn
+  (is (= :black (game/current-player-color [[:black [16 16]] [:white :pass]]))))
+
+
 
 
 
