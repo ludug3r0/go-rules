@@ -16,9 +16,11 @@
     (throw (ex-info "trying to place stone where another exist" {:configuration configuration :stone stone})))
   (apply set/union (group/generate-surviving-groups configuration stone)))
 
+(def fast-place-stone (memoize place-stone))
+
 (defn surviving-stones
   [stones]
-  (reduce place-stone #{} stones))
+  (reduce fast-place-stone #{} stones))
 
 (defn stones-dont-overlap?
   [stones]

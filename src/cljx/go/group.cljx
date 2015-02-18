@@ -49,9 +49,11 @@
   [stones group]
   (some (partial has-empty-adjacent-vertex? stones) group))
 
+(def fast-merging-into-groups (memoize merging-into-groups))
+
 (defn generate-intermediary-groups
   [stones]
-  (reduce merging-into-groups #{} stones))
+  (reduce fast-merging-into-groups #{} stones))
 
 (defn generate-surviving-groups
   [stones stone]
