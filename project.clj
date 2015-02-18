@@ -8,10 +8,10 @@
             :scm {:name "git"
                   :url  "https://github.com/ludug3r0/go-rules"}
             :profiles {:dev {:dependencies [[org.clojure/clojure "1.6.0"]
-                                            [org.clojure/clojurescript "0.0-2411"]
+                                            [org.clojure/clojurescript "0.0-2850"]
                                             [com.keminglabs/cljx "0.4.0" :exclusions [org.clojure/clojure]]]
                              :plugins      [[com.keminglabs/cljx "0.4.0" :exclusions [org.clojure/clojure]]
-                                            [lein-cljsbuild "1.0.3"]
+                                            [lein-cljsbuild "1.0.4"]
                                             [com.cemerick/clojurescript.test "0.3.3"]]}}
             :source-paths ["tmp/generated/src/clj" "tmp/generated/src/cljs"]
             :test-paths ["tmp/generated/test/clj"]
