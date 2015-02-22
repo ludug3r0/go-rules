@@ -37,8 +37,9 @@
       vertex)))
 
 
-(defn- playable-vertex?
-  [game vertex]
+(s/defn playable-vertex?
+  [game :- schema/game
+   vertex :- schema/vertex]
   (let [current-player-color (current-player-color game)
         move [current-player-color vertex]
         possible-game (conj game move)]
