@@ -63,6 +63,15 @@
 (deftest after-white-move-its-blacks-turn
   (is (= :black (game/current-player-color [[:black [16 16]] [:white :pass]]))))
 
+(deftest occupy-vertex-for-first-move-places-a-black-stone
+  (is (= [[:black [16 16]]] (game/occupy-vertex [] [16 16]))))
+
+(deftest occupy-vertex-for-second-move-places-a-white-stone
+  (is (= [[:black [16 16]] [:white [4 4]]] (game/occupy-vertex [[:black [16 16]]] [4 4]))))
+
+(deftest occupy-returns-the-same-game-if-vertex-is-already-occupied
+  (is (= [[:black [16 16]]] (game/occupy-vertex [[:black [16 16]]] [16 16]))))
+
 
 
 

@@ -17,7 +17,6 @@
     ;;TODO: super-ko rule
     game))
 
-
 (s/defn current-player-color :- [schema/color]
   [game :- schema/game]
   (let [last-move (last game)
@@ -53,3 +52,12 @@
         playable-vertices (filter (partial playable-vertex? game) empty-vertices)]
     (for [playable-vertex playable-vertices]
       [current-player-color playable-vertex])))
+
+(s/defn occupy-vertex :- schema/game
+  [game :- schema/game
+   vertex :- schema/vertex]
+  (let [current-player-color (current-player-color game)
+        placement [current-player-color vertex]]
+    (if (playable-vertex? game vertex)
+      (conj game placement)
+      game)))
