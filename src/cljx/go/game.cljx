@@ -27,21 +27,28 @@
       :white
       :black)))
 
-(s/defn empty-placements :- [schema/placement]
+(s/defn empty-vertices :- [schema/vertex]
   [game :- schema/game]
-  (let [occupied-vertices (set (map m/move (configuration game)))
-        current-player-color (current-player-color game)]
+  (let [occupied-vertices (set (map m/move (configuration game)))]
     (for [line (range 1 20)
           column (range 1 20)
           :let [vertex [line column]]
           :when ((comp not contains?) occupied-vertices vertex)]
-      [current-player-color vertex])))
+      vertex)))
 
+
+(defn- playable-vertex?
+  [game vertex]
+  (let [current-player-color (current-player-color game)
+        move [current-player-color vertex]
+        possible-game (conj game move)]
+    (and (valid? possible-game)
+         (configuration possible-game))))
 
 (s/defn valid-placements :- [schema/placement]
   [game :- schema/game]
-  (filter (fn [placement]
-            (let [possible-game (conj game placement)]
-              (and (valid? possible-game)
-                   (configuration possible-game))))
-          (empty-placements game)))
+  (let [current-player-color (current-player-color game)
+        empty-vertices (empty-vertices game)
+        playable-vertices (filter (partial playable-vertex? game) empty-vertices)]
+    (for [playable-vertex playable-vertices]
+      [current-player-color playable-vertex])))

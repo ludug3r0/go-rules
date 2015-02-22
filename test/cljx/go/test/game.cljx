@@ -48,11 +48,11 @@
 (deftest after-the-first-move-board-has-360-valid-placements
   (is (= 360 (count (game/valid-placements [[:black [16 16]]])))))
 
-(deftest an-empty-board-has-361-empty-placements
-  (is (= 361 (count (game/empty-placements [])))))
+(deftest an-empty-board-has-361-empty-vertices
+  (is (= 361 (count (game/empty-vertices [])))))
 
-(deftest after-the-first-move-board-has-360-empty-placements
-  (is (= 360 (count (game/empty-placements [[:black [16 16]]])))))
+(deftest after-the-first-move-board-has-360-empty-vertices
+  (is (= 360 (count (game/empty-vertices [[:black [16 16]]])))))
 
 (deftest first-player-is-black
   (is (= :black (game/current-player-color []))))
