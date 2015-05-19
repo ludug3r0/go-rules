@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ludug3r0/go-rules.svg?branch=master)](https://travis-ci.org/ludug3r0/go-rules)
+[![Build Status](https://snap-ci.com/ludug3r0/go-rules/branch/master/build_image)](https://snap-ci.com/ludug3r0/go-rules/branch/master)
 
 # go-rules
 
